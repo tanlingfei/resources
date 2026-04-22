@@ -1,0 +1,131 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4336770 */
+  src: url('iconfont.woff2?t=1715140371371') format('woff2'),
+       url('iconfont.woff?t=1715140371371') format('woff'),
+       url('iconfont.ttf?t=1715140371371') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-dingdanguanli:before {
+  content: "\e61a";
+}
+
+.icon-yingxiaoguanli:before {
+  content: "\e61f";
+}
+
+.icon-meitiguanli:before {
+  content: "\e606";
+}
+
+.icon--kucunguanli:before {
+  content: "\e653";
+}
+
+.icon-chanpinguanli:before {
+  content: "\e7b6";
+}
+
+.icon-fenleiguanli:before {
+  content: "\e610";
+}
+
+.icon-baojiaguanli:before {
+  content: "\e64f";
+}
+
+.icon-xinxiguanli:before {
+  content: "\e646";
+}
+
+.icon-qiyeguanli:before {
+  content: "\e62f";
+}
+
+.icon-xuankeguanli:before {
+  content: "\e60f";
+}
+
+.icon-banjiguanli:before {
+  content: "\e6ac";
+}
+
+.icon-kechengguanli:before {
+  content: "\e661";
+}
+
+.icon-xueshengguanli:before {
+  content: "\e67f";
+}
+
+.icon-daimashengcheng:before {
+  content: "\e611";
+}
+
+.icon-guanliyuan_jiaoseguanli:before {
+  content: "\e613";
+}
+
+.icon-xitongguanli1:before {
+  content: "\e626";
+}
+
+.icon-yonghuguanli1:before {
+  content: "\e630";
+}
+
+.icon-denglurizhi:before {
+  content: "\e694";
+}
+
+.icon-caozuorizhi:before {
+  content: "\e7d4";
+}
+
+.icon-bumenguanli:before {
+  content: "\ea45";
+}
+
+.icon-caidanguanli:before {
+  content: "\e658";
+}
+
+.icon-jiaoseguanli:before {
+  content: "\e665";
+}
+
+.icon-yonghuguanli:before {
+  content: "\e612";
+}
+
+.icon-xitongguanli:before {
+  content: "\e648";
+}
+
+.icon-yuyanshezhi:before {
+  content: "\e6cd";
+}
+
+.icon--zidianxuanxiang:before {
+  content: "\e60e";
+}
+
+.icon-shujuzidianfenlei:before {
+  content: "\e77e";
+}
+
+.icon-zidianguanli:before {
+  content: "\e641";
+}
+
+.icon-rizhiguanli:before {
+  content: "\e65e";
+}
+

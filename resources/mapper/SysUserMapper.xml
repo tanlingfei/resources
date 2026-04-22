@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.v3.system.mapper.SysUserMapper">
+
+    <resultMap id="SysUserMap" type="com.v3.model.system.SysUser" autoMapping="true">
+    </resultMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+      u.id,u.username,u.password,u.name,u.phone as mobile,u.address,u.head_url,u.description,u.email,
+      u.status,u.create_time,u.update_time,u.is_deleted,d.roleIds,d.roleNames
+   </sql>
+    <select id="selectPage" resultMap="SysUserMap">
+        select
+        <include refid="columns"/>
+        from sys_user u left join (select group_concat(sd.id order by sud.create_time asc) as roleIds,
+        group_concat(sd.role_name order by sud.create_time asc) as roleNames,
+        sud.user_id from sys_role sd
+        inner join sys_user_role sud on sd.id=sud.role_id
+        where sd.is_deleted = 0 and sud.is_deleted=0
+        group by sud.user_id) d on u.id = d.user_id
+        <where>
+            <if test="vo.keyword != null and vo.keyword != ''">
+                and (u.username like CONCAT('%',#{vo.keyword},'%') or u.name like CONCAT('%',#{vo.keyword},'%') or
+                u.phone like CONCAT('%',#{vo.keyword},'%'))
+            </if>
+            <if test="vo.createTimeBegin != null and vo.createTimeBegin != ''">
+                and u.create_time >= #{vo.createTimeBegin}
+            </if>
+            <if test="vo.createTimeEnd != null and vo.createTimeEnd != ''">
+                and u.create_time &lt;= #{vo.createTimeEnd}
+            </if>
+            and u.is_deleted = 0
+        </where>
+        order by u.create_time desc
+    </select>
+
+
+</mapper>

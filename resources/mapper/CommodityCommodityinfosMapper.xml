@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.v3.business.mapper.CommodityCommodityinfosMapper">
+    <resultMap id="commodityCommodityinfosMap" type="com.v3.business.model.CommodityCommodityinfos" autoMapping="true">
+    </resultMap>
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        x1.name
+        ,x1.types,
+            x1.types_name
+            ,x1.img
+            ,x1.lb_img
+            ,x1.details
+            ,x1.create_time
+            ,x1.update_time
+            ,x1.is_pub
+            ,x1.is_recom
+            ,x1.id,
+            x1.user_id,
+            x1.username
+    </sql>
+    <sql id="middles">
+        from commodity_commodityinfos x1
+    </sql>
+    <sql id="conditions">
+        <if test="vo.types != null and vo.types != ''">
+            and x1.types = #{vo.types}
+        </if>
+        <if test="vo.name != null and vo.name != ''">
+            <choose>
+                <when test="vo.searchModel == 'full'">
+                    MATCH(x1.name, x1.details) AGAINST(#{vo.name} IN BOOLEAN MODE)
+                </when>
+                <otherwise>
+                    and x1.name like CONCAT('%',#{vo.name},'%')
+                </otherwise>
+            </choose>
+        </if>
+
+        <if test="vo.typesName != null and vo.typesName != ''">
+            and commodityTypes2.seconds like CONCAT('%',#{vo.typesName},'%')
+        </if>
+        <if test="vo.img != null and vo.img != ''">
+            and x1.img like CONCAT('%',#{vo.img},'%')
+        </if>
+        <if test="vo.details != null and vo.details != ''">
+            and x1.details like CONCAT('%',#{vo.details},'%')
+        </if>
+        <if test="vo.userId != null and vo.userId != ''">
+            and x1.user_id = #{vo.userId}
+        </if>
+        <if test="vo.isPub != null and vo.isPub != ''">
+            and x1.is_pub = #{vo.isPub}
+        </if>
+        <if test="vo.isRecom != null and vo.isRecom != ''">
+            and x1.is_recom = #{vo.isRecom}
+        </if>
+        <if test="vo.isUpdate != null and vo.isUpdate != ''">
+            and x1.is_update = #{vo.isUpdate}
+        </if>
+        <if test="vo.isCollect != null and vo.isCollect == 'yes'">
+            and exists (select 1 from tb_collect tb where tb.commodity_id=x1.id and tb.user_id=#{vo.userId})
+        </if>
+        <if test="vo.createTimeBegin != null and vo.createTimeBegin != ''">
+            and x1.create_time >= #{vo.createTimeBegin}
+        </if>
+        <if test="vo.createTimeEnd != null and vo.createTimeEnd != ''">
+            and x1.create_time &lt;= #{vo.createTimeEnd}
+        </if>
+        <if test="vo.updateTimeBegin != null and vo.updateTimeBegin != ''">
+            and x1.create_time >= #{vo.updateTimeBegin}
+        </if>
+        <if test="vo.updateTimeEnd != null and vo.updateTimeEnd != ''">
+            and x1.create_time &lt;= #{vo.updateTimeEnd}
+        </if>
+
+        and x1.is_deleted = 0
+        <!-- 判断  x1.orderCol 不等于空 则按照x1.orderCol 排序  否则默认按照x1.createTime 排序-->
+        <if test="vo.orderCol != null and vo.orderCol != ''">
+            order by x1.${vo.orderCol} desc
+        </if>
+        <if test="vo.orderCol == null or vo.orderCol == ''">
+            order by x1.create_time desc
+        </if>
+
+    </sql>
+    <select id="selectPage" resultMap="commodityCommodityinfosMap">
+        select <include refid="columns" />
+        <include refid="middles" />
+        <where>
+            <include refid="conditions" />
+        </where>
+    </select>
+    <select id="queryList" resultMap="commodityCommodityinfosMap">
+        select <include refid="columns" />
+        <include refid="middles" />
+        <where>
+            <include refid="conditions" />
+        </where>
+    </select>
+
+    <!-- 获取收藏排行榜前100名 -->
+    <select id="getCollectTop" resultMap="commodityCommodityinfosMap">
+        SELECT
+            id,
+            name,
+            likes
+        FROM commodity_commodityinfos
+        WHERE is_deleted = 0 AND likes IS NOT NULL
+        ORDER BY likes DESC
+        LIMIT 100
+    </select>
+
+    <!-- 根据id只查询types字段 -->
+    <select id="getTypesById" resultType="java.lang.String">
+        SELECT types FROM commodity_commodityinfos WHERE id = #{id} and is_deleted = '0'
+    </select>
+</mapper>

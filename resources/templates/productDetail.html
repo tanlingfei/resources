@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="${product != null ? (product.name.length() > 50 ? product.name.substring(0, 50) + '... - 糖糖分享网' : product.name + ' - 糖糖分享网') : '资源详情 - 糖糖分享网'}"></title>
+  <meta name="description" th:attr="content=${product != null ? (product.details != null ? (product.details.length() > 150 ? product.details.substring(0, 150) + '...' : product.details) : '优质虚拟资源下载，学习资料、考研网课、源码素材尽在糖糖分享网') : '糖糖分享网提供虚拟资源、学习资料、考研网课、源码素材下载服务'}">
+  <meta name="keywords" content="虚拟资源,学习资料,考研网课,源码素材,毕业设计,程序源码,视频教程,糖糖分享">
+  <meta name="robots" content="index,follow">
+  <link rel="stylesheet" href="/css/detail.css">
+</head>
+<body>
+<main class="product-detail-modern">
+  <div class="action-buttons-wrapper">
+    <button class="back-button" onclick="history.back()">
+      ← 返回
+    </button>
+    <a href="/care" class="wx-link-button">
+      使用遇到问题? 关注公众号咨询客服
+    </a>
+  </div>
+
+  <div th:if="${product == null}" class="error-alert">
+    素材不存在
+  </div>
+
+  <div th:if="${product != null}">
+    <div class="product-banner">
+      <div class="banner-content">
+        <h1 class="product-main-title" th:text="${product.name.length() > 30 ? product.name.substring(0, 30) + '...' : product.name}"></h1>
+        <div class="product-tags">
+          <span class="product-tag">
+            👤 <span th:text="${product.username}">admin</span>
+          </span>
+          <span class="product-tag">
+            📅 <span th:text="${#dates.format(product.createTime, 'yyyy-MM-dd HH:mm')}"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content-area">
+      <div class="info-action-section">
+        <div class="info-action-container">
+          <div class="download-links-section">
+            <h2 class="section-title">网盘地址</h2>
+            <div class="download-links-content">
+              <div th:if="${(product.isUpdate != '1') and (product.likes == 8888)}">
+                <div class="quark-instructions">
+                  <div class="instruction-header">
+                    <span class="header-icon">📦</span>
+                    <span class="header-text">使用夸克网盘获取资源</span>
+                  </div>
+                  <div class="instruction-tips">
+                    <div class="tip-item">
+                      <span class="tip-icon">⚠️</span>
+                      <span>请确保已下载并登录「夸克网盘」APP，仅支持手机端</span>
+                    </div>
+                    <div class="tip-item">
+                      <span class="tip-icon">📥</span>
+                      <span>未下载？<span class="download-link" onclick="downloadQuark()">点击下载夸克网盘</span> 或在手机应用商店搜索「夸克」安装</span>
+                    </div>
+                  </div>
+                  <div class="instruction-step">
+                    <button class="get-resource-btn" onclick="getQuarkResource()">
+                      📋 获取资源
+                    </button>
+                  </div>
+                  <div class="instruction-footer">
+                    <span class="footer-text">💡 点击按钮后，链接将自动复制并打开夸克，在夸克中即可查看资源</span>
+                  </div>
+                </div>
+              </div>
+              <div th:if="${(product.isUpdate == '1') or (product.likes != 8888)}">
+                <div th:if="${#lists.isEmpty(downloadLinks)}" class="empty-state">暂无下载链接</div>
+                <div class="download-link-item" th:each="link : ${downloadLinks}">
+                  <span class="link-name" th:text="${link.name}"></span>
+                  <span class="link-separator">:</span>
+                  <a class="link-url" th:href="${link.url}" target="_blank" th:text="${link.url}"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="description-section">
+            <h2 class="section-title">描述</h2>
+            <div class="description-content">
+              <p th:text="${product.details != null ? product.details : '暂无描述'}"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div th:if="${product.img != null and product.img != '' }" class="media-display-section">
+        <div class="media-viewer">
+          <img th:src="${product.img}" th:alt="${product.name != null and product.name.length() > 15 ? product.name.substring(0, 15) : product.name}" class="media-content-modern">
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer-section">
+      <div class="disclaimer-content">
+        <div class="disclaimer-title">
+          <span>⚠️</span>
+          <span>免责声明</span>
+        </div>
+        <div class="disclaimer-text">
+          <p>本站所有资源均来自于网络公开渠道分享，仅供个人学习和交流使用，不得用于任何商业用途。</p>
+          <p>如果您认为本站的内容侵犯了您的权益，请发送邮件到 419719557@qq.com 告知管理员,我们24小时内会处理!</p>
+        </div>
+        <!--<div class="wx-link-section">
+          <button id="wxBtn" class="wx-link-button">
+            <span>💬</span> 关注公众号防失联
+          </button>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</main>
+
+<input type="hidden" id="shareLinkData" th:value="${shareLink}">
+<script th:inline="javascript">
+  window.shareLink = /*[[${shareLink}]]*/ '';
+</script>
+<script src="/js/productDetail.js"></script>
+<footer class="site-footer">
+  <div class="footer-content">
+    <img src="/img/beian.png" alt="备案图标" class="beian-icon">
+    <a href="https://beian.mps.gov.cn/#/query/webSearch?code=43021102000399" rel="noreferrer" target="_blank">湘公网安备43021102000399号</a>
+    <span class="separator">|</span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color: #999; text-decoration: none;">湘ICP备2026011589号</a>
+  </div>
+</footer>
+</body>
+</html>

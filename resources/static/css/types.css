@@ -1,0 +1,397 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.get-types-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: #f5f5f5;
+    width: 100%;
+}
+
+.main-card {
+    min-height: 60vh;
+    padding: 30px 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.input-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.input-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.input-header h2 {
+    color: #303133;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.input-header p {
+    color: #606266;
+    font-size: 14px;
+}
+
+.link-input {
+    width: 100%;
+    max-width: 500px;
+    height: 100px;
+    padding: 15px;
+    border: 2px solid #dcdfe6;
+    border-radius: 10px;
+    font-size: 14px;
+    resize: none;
+    margin: 20px 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.link-input:focus {
+    outline: none;
+    border-color: #409eff;
+    box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+}
+
+.parse-btn {
+    background: linear-gradient(135deg, #409eff 0%, #66b1ff 100%);
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(64, 158, 255, 0.4);
+    margin-top: 10px;
+}
+
+.parse-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(64, 158, 255, 0.5);
+}
+
+.parse-btn:active {
+    transform: translateY(0);
+}
+
+.parse-btn:disabled {
+    background: #c0c4cc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.result-section {
+    margin-top: 20px;
+}
+
+.title-section {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.material-title {
+    color: #303133;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.result-header {
+    font-size: 18px;
+    font-weight: 600;
+    color: #303133;
+    margin-bottom: 15px;
+}
+
+.link-item {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 12px;
+    border: 1px solid #e9ecef;
+}
+
+.link-name {
+    font-weight: 600;
+    color: #495057;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.link-desc {
+    color: #606266;
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.link-url {
+    color: #409eff;
+    text-decoration: none;
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.link-url:hover {
+    color: #66b1ff;
+    text-decoration: underline;
+}
+
+.error-message {
+    background: #fef0f0;
+    border: 1px solid #fbc4c4;
+    color: #f56c6c;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.warning-message {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff3f3;
+    border: 1px solid #ffccc7;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.contact-link {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+    font-size: 14px;
+    color: #909399;
+    text-align: center;
+}
+
+.contact-link a {
+    color: #409eff;
+    text-decoration: none;
+}
+
+.contact-link a:hover {
+    text-decoration: underline;
+}
+
+.not-quark-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.not-quark-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.not-quark-title {
+    color: #303133;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.not-quark-desc {
+    color: #606266;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.hidden {
+    display: none;
+}
+
+.site-footer {
+    margin-top: 30px;
+    padding: 20px 0;
+    width: 100%;
+    text-align: center;
+    color: #909399;
+    font-size: 12px;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.beian-icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.separator {
+    margin: 0 8px;
+    color: #c0c4cc;
+}
+
+.site-footer a {
+    color: #909399;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.site-footer a:hover {
+    color: #409eff;
+    text-decoration: none;
+}
+
+.disclaimer-section {
+    margin-top: 20px;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding: 20px;
+    background: linear-gradient(135deg, #fff5f5 0%, #fff0f0 100%);
+    border-radius: 12px;
+    border-left: 4px solid #ff6b6b;
+    box-shadow: 0 2px 12px rgba(255, 107, 107, 0.1);
+}
+
+.disclaimer-content {
+    max-width: 100%;
+    margin: 0;
+}
+
+.disclaimer-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #c53030;
+    margin-bottom: 15px;
+}
+
+.disclaimer-text p {
+    font-size: 0.9rem;
+    color: #744210;
+    line-height: 1.8;
+    margin: 8px 0;
+    padding-left: 2em;
+    text-indent: -2em;
+}
+
+.wx-link-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.wx-link-button {
+    color: #667eea;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+}
+
+.wx-link-button:hover {
+    color: #764ba2;
+}
+
+@media (max-width: 768px) {
+    .get-types-container {
+        padding: 10px;
+    }
+
+    .main-card {
+        padding: 20px 15px;
+        border-radius: 8px;
+    }
+
+    .input-header h2 {
+        font-size: 20px;
+    }
+
+    .link-input {
+        height: 80px;
+    }
+
+    .parse-btn {
+        padding: 12px 30px;
+        font-size: 15px;
+    }
+
+    .result-header {
+        font-size: 16px;
+    }
+
+    .link-item {
+        padding: 12px;
+    }
+
+    .contact-link {
+        font-size: 13px;
+    }
+    
+    .site-footer {
+        margin-top: 20px;
+        padding: 15px 0;
+        font-size: 11px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .separator {
+        display: none;
+    }
+
+    .disclaimer-section {
+        margin: 12px 10px;
+        padding: 12px;
+        border-radius: 8px;
+        border-left-width: 3px;
+    }
+
+    .disclaimer-title {
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+    }
+
+    .disclaimer-text p {
+        font-size: 0.8rem;
+        line-height: 1.6;
+        margin: 5px 0;
+        padding-left: 0;
+        text-indent: 0;
+    }
+}

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>糖糖分享网 - 虚拟资源下载_免费学习资料_考研网课_源码素材平台</title>
+  <meta name="description" content="糖糖分享网是专业的虚拟资源下载平台，提供免费学习资料、考研网课、程序源码、毕业设计素材下载。涵盖考研、视频教程、毕业设计源码等优质学习资源，支持夸克网盘快速下载。">
+  <meta name="keywords" content="虚拟资源,免费学习资料,考研网课,学习资源下载,程序源码,毕业设计,考研视频,教程下载,素材下载,糖糖分享">
+  <meta name="robots" content="index,follow">
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+  <div class="index-embedded-container">
+    <div class="fixed-search-container">
+      <div class="brand-header-section">
+        <div class="brand-content-wrapper">
+          <div class="brand-text-wrapper">
+            <h1 class="main-brand-title">糖糖分享网</h1>
+            <p class="brand-subtitle">技术改变创作未来</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="top-functions-area">
+        <div class="search-function-area">
+          <div class="search-input-field">
+            <input id="searchName" type="text" th:value="${name}" placeholder="输入您要搜索的内容...">
+            <button id="searchBtn" class="search-btn-wrapper">
+              <span>🔍</span> 搜索
+            </button>
+          </div>
+          <button id="resetBtn" class="reset-search-btn">🔄 重置</button>
+          <div id="searchStatusHint" class="search-status-hint" style="display: none;">资源拼命检索中...</div>
+        </div>
+      </div>
+    </div>
+
+    <main class="main-content-area">
+      <div class="hot-search-area">
+        <div class="hot-search-title">热搜：</div>
+        <div class="hot-search-tags">
+          <span class="hot-search-tag" th:each="t : ${typesList}" th:text="${t.seconds}" onclick="hotSearch(this.textContent)"></span>
+        </div>
+      </div>
+
+      <section class="products-display-section">
+        <div class="section-header-area">
+          <div class="total-items-count">共 <span id="totalCount" th:text="${pageData['total']}">0</span> 条记录</div>
+        </div>
+
+        <div id="pcTableLayout" class="products-table-layout">
+          <table class="products-table">
+            <thead>
+              <tr>
+                <th>名称</th>
+                <th style="width: 120px;">上传时间</th>
+              </tr>
+            </thead>
+            <tbody id="pcTableBody">
+              <tr th:each="r : ${pageData.records}" th:data-id="${r['id']}" class="table-row-clickable">
+                <td>
+                  <div class="table-title-cell">
+                    <div th:if="${r['img'] != null and (r['img'].contains('.jpg') or r['img'].contains('.jpeg') or r['img'].contains('.png') or r['img'].contains('.gif') or r['img'].contains('.bmp') or r['img'].contains('.webp'))}" class="table-image-container">
+                      <img th:src="${ctxPath + r['img']}" th:alt="${r['name'] != null and r['name'].length() > 15 ? r['name'].substring(0, 15) : r['name']}">
+                    </div>
+                    <div class="table-content-container">
+                      <h3 class="table-product-title" th:title="${r['name']}" th:text="${r['name'] != null and r['name'].length() > 60 ? r['name'].substring(0, 60) + '...' : r['name']}"></h3>
+                      <p class="table-product-desc" th:text="${r['details']}"></p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="table-date-cell" th:text="${#dates.format(r['createTime'], 'yyyy-MM-dd')}"></div>
+                </td>
+              </tr>
+              <tr th:if="${#lists.isEmpty(pageData.records)}">
+                <td colspan="2"><div class="empty-state">暂无数据</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="mobileGrid" class="mobile-products-grid">
+          <div th:each="r : ${pageData.records}" th:data-id="${r['id']}" class="mobile-product-card mobile-card-clickable">
+            <div th:if="${r['img'] != null and (r['img'].contains('.jpg') or r['img'].contains('.jpeg') or r['img'].contains('.png') or r['img'].contains('.gif') or r['img'].contains('.bmp') or r['img'].contains('.webp'))}" class="mobile-card-image">
+              <img th:src="${ctxPath + r['img']}" th:alt="${r['name'] != null and r['name'].length() > 15 ? r['name'].substring(0, 15) : r['name']}">
+            </div>
+            <div class="mobile-card-content">
+              <h3 class="mobile-product-title" th:text="${r['name'] != null and r['name'].length() > 60 ? r['name'].substring(0, 60) + '...' : r['name']}"></h3>
+              <p class="mobile-product-desc" th:text="${r['details']}"></p>
+              <div class="mobile-card-meta">
+                <div class="mobile-user-info">
+                  <span>👤</span>
+                  <span>admin</span>
+                </div>
+                <div class="mobile-date-info" th:text="${#dates.format(r['createTime'], 'yyyy-MM-dd')}"></div>
+              </div>
+            </div>
+          </div>
+          <div th:if="${#lists.isEmpty(pageData.records)}" class="empty-state">暂无数据</div>
+        </div>
+
+        <div id="noSearchResults" class="no-search-results" style="display: none;">
+          <div class="no-results-content">
+            <p class="no-results-text">暂无搜索结果</p>
+            <p class="no-results-hint">可关注公众号咨询站长获取</p>
+            <a href="/care" class="no-results-link">关注公众号</a>
+          </div>
+        </div>
+
+        <div class="mobile-load-more">
+          <div id="loadMoreTrigger" class="load-more-trigger" onclick="loadMoreData()" style="display: none;">
+            点击加载更多
+          </div>
+          <div id="loadingMore" class="loading-more" style="display: none;">
+            <span class="el-icon">🔄</span>
+            <span>正在加载...</span>
+          </div>
+          <div id="noMoreData" class="no-more-data" style="display: none;">
+            <span>没有更多数据了</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="disclaimer-section">
+      <div class="disclaimer-content">
+        <div class="disclaimer-title">
+          <span>⚠️</span>
+          <span>免责声明</span>
+        </div>
+        <div class="disclaimer-text">
+          <p>本站所有资源均来自于网络公开渠道分享，仅供个人学习和交流使用，不得用于任何商业用途。</p>
+          <p>如果您认为本站的内容侵犯了您的权益，请发送邮件到 419719557@qq.com 告知管理员,我们24小时内会处理!</p>
+        </div>
+        <div class="wx-link-section">
+          <button id="wxBtn" class="wx-link-button">
+            <span>💬</span> 关注公众号防失联
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script th:inline="javascript">
+  window.pageData = {
+    nextCursorCreateTime: /*[[${pageData.nextCursorCreateTime}]]*/ null,
+    nextCursorId: /*[[${pageData.nextCursorId}]]*/ null,
+    total: /*[[${pageData.total}]]*/ 0,
+    records: /*[[${pageData.records}]]*/ []
+  };
+</script>
+<script src="/js/index.js"></script>
+<footer class="site-footer">
+  <div class="footer-content">
+    <img src="/img/beian.png" alt="备案图标" class="beian-icon">
+    <a href="https://beian.mps.gov.cn/#/query/webSearch?code=43021102000399" rel="noreferrer" target="_blank">湘公网安备43021102000399号</a>
+    <span class="separator">|</span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color: #999; text-decoration: none;">湘ICP备2026011589号</a>
+  </div>
+</footer>
+</body>
+</html>

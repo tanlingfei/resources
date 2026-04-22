@@ -1,0 +1,183 @@
+{
+ "name": "棠棠资源站",
+ "type": "public_channel",
+ "id": 3762604301,
+ "messages": [
+  {
+   "id": 1,
+   "type": "message",
+   "date": "1970-01-01T08:00:00",
+   "date_unixtime": "0",
+   "text": "",
+   "text_entities": []
+  },
+  {
+   "id": 2,
+   "type": "service",
+   "date": "2026-02-10T06:30:11",
+   "date_unixtime": "1770676211",
+   "actor": "棠棠资源站",
+   "actor_id": "channel3762604301",
+   "action": "set_messages_ttl",
+   "period": 86400,
+   "text": "",
+   "text_entities": []
+  },
+  {
+   "id": 3,
+   "type": "service",
+   "date": "2026-02-10T06:33:51",
+   "date_unixtime": "1770676431",
+   "actor": "棠棠资源站",
+   "actor_id": "channel3762604301",
+   "action": "set_messages_ttl",
+   "period": 0,
+   "text": "",
+   "text_entities": []
+  },
+  {
+   "id": 4,
+   "type": "service",
+   "date": "2026-02-10T06:36:35",
+   "date_unixtime": "1770676595",
+   "actor": "棠棠资源站",
+   "actor_id": "channel3762604301",
+   "action": "group_call",
+   "text": "",
+   "text_entities": []
+  },
+  {
+   "id": 9,
+   "type": "message",
+   "date": "2026-02-23T15:53:12",
+   "date_unixtime": "1771833192",
+   "from": "棠棠资源站",
+   "from_id": "channel3762604301",
+   "forwarded_from": "热门影视（整理）",
+   "forwarded_from_id": "channel2263606676",
+   "photo": "photos/photo_1@23-02-2026_15-53-12.jpg",
+   "photo_file_size": 137097,
+   "width": 700,
+   "height": 1050,
+   "text": [
+    "《燃情岁月 Legends of the Fall (1994)》\n\n西部草原的壮阔与家族命运的纠葛，布拉德·皮特狂放不羁的表演，配以詹姆斯·霍纳经典乐章，谱写出一段关于自由、爱情与宿命的史诗。\n\n",
+    {
+     "type": "hashtag",
+     "text": "#燃情岁月"
+    },
+    "  ",
+    {
+     "type": "hashtag",
+     "text": "#LegendsOfTheFall"
+    },
+    "  ",
+    {
+     "type": "hashtag",
+     "text": "#布拉德皮特"
+    },
+    "  ",
+    {
+     "type": "hashtag",
+     "text": "#史诗电影"
+    },
+    "  ",
+    {
+     "type": "hashtag",
+     "text": "#爱奇艺"
+    },
+    "\n\n2025-10-17 04:59:07\n\n🔗 ",
+    {
+     "type": "link",
+     "text": "https://pan.quark.cn/s/c192816f0f49"
+    },
+    ""
+   ],
+   "text_entities": [
+    {
+     "type": "plain",
+     "text": "《燃情岁月 Legends of the Fall (1994)》\n\n西部草原的壮阔与家族命运的纠葛，布拉德·皮特狂放不羁的表演，配以詹姆斯·霍纳经典乐章，谱写出一段关于自由、爱情与宿命的史诗。\n\n"
+    },
+    {
+     "type": "hashtag",
+     "text": "#燃情岁月"
+    },
+    {
+     "type": "plain",
+     "text": "  "
+    },
+    {
+     "type": "hashtag",
+     "text": "#LegendsOfTheFall"
+    },
+    {
+     "type": "plain",
+     "text": "  "
+    },
+    {
+     "type": "hashtag",
+     "text": "#布拉德皮特"
+    },
+    {
+     "type": "plain",
+     "text": "  "
+    },
+    {
+     "type": "hashtag",
+     "text": "#史诗电影"
+    },
+    {
+     "type": "plain",
+     "text": "  "
+    },
+    {
+     "type": "hashtag",
+     "text": "#爱奇艺"
+    },
+    {
+     "type": "plain",
+     "text": "\n\n2025-10-17 04:59:07\n\n🔗 "
+    },
+    {
+     "type": "link",
+     "text": "https://pan.quark.cn/s/c192816f0f49"
+    },
+    {
+     "type": "plain",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "type": "message",
+   "date": "2026-02-23T15:53:12",
+   "date_unixtime": "1771833192",
+   "from": "棠棠资源站",
+   "from_id": "channel3762604301",
+   "forwarded_from": "热门影视（整理）",
+   "forwarded_from_id": "channel2263606676",
+   "photo": "photos/photo_2@23-02-2026_15-53-12.jpg",
+   "photo_file_size": 98876,
+   "width": 600,
+   "height": 863,
+   "text": "",
+   "text_entities": []
+  },
+  {
+   "id": 11,
+   "type": "message",
+   "date": "2026-02-23T15:53:12",
+   "date_unixtime": "1771833192",
+   "from": "棠棠资源站",
+   "from_id": "channel3762604301",
+   "forwarded_from": "热门影视（整理）",
+   "forwarded_from_id": "channel2263606676",
+   "photo": "photos/photo_3@23-02-2026_15-53-12.jpg",
+   "photo_file_size": 54304,
+   "width": 600,
+   "height": 600,
+   "text": "",
+   "text_entities": []
+  }
+ ]
+}
